@@ -1,0 +1,197 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Collaborating Vision, Depth, and Thermal Signals for Multi-Modal Tracking: Dataset and Algorithm</title>
+  <!--=================Meta tags==========================-->
+  <meta name="robots" content="index,follow">
+  <meta name="description"
+    content="Collaborating Vision, Depth, and Thermal Signals for Multi-Modal Tracking: Dataset and Algorithm">
+  <meta name="keywords" content="visual object tracking, visual-depth-thermal, Tri-modal tracking, RGB-D, RGB-T">
+  <link rel="author" href="https://github.com/xuefeng-zhu5">
+  <!--=================js==========================-->
+  <link href="./css.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+  <script src="./effect.js "></script>
+  <!-- Latex -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+      </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+    </script>
+  <!--=================Google Analytics==========================-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129775907-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-129775907-1');
+  </script>
+</head>
+
+<body>
+  <div id="content">
+    <div id="content-inner">
+      <div class="section head">
+        <h1>
+          <font color="Tomato">RGBDT500</font>--Collaborating Vision, Depth, and Thermal Signals for Multi-Modal Tracking
+        </h1>
+
+        <!--=================Authors==========================-->
+        <div class="authors">
+          <a href="https://github.com/xuefeng-zhu5" target="_blank">Xue-Feng Zhu</a> <sup>1</sup>
+          <a href="https://github.com/XU-TIANYANG" target="_blank">Tianyang Xu</a> <sup>1</sup>
+          <a href=" " target="_blank">Yifan Pan</a> <sup>1</sup>
+          <a href="" target="_blank">Jinjie Gu</a> <sup>1</sup>
+          <a href="https://scholar.google.com/citations?user=TYNPJQMAAAAJ&hl=en&oi=ao" target="_blank">Xi Li</a> <sup>2</sup>
+          <a href="https://scholar.google.com/citations?user=TN8uDQoAAAAJ&hl=en&oi=ao" target="_blank">Jiwen Lu</a> <sup>3</sup>
+          <a href="https://scholar.google.com/citations?user=5IST34sAAAAJ&hl=en" target="_blank">Xiao-Jun Wu</a> <sup>1</sup>
+          <a href="https://scholar.google.com/citations?user=pk-yb_kAAAAJ&hl=en" target="_blank">Josef Kittler</a>
+          <sup>4</sup> &nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+
+        <div class="affiliations ">
+          <sup>1</sup> Jiangnan University
+          <sup>2</sup> Zhejiang University
+          <sup>3</sup> Tsinghua University
+          <sup>4</sup> University of Surrey <br>
+        </div>
+
+<!--=================Tabs==========================-->
+        <ul id="tabs">
+          <li><a href="#Highlights" name="#tab1">Highlights</a></li>
+          <li><a href="#Download" name="#tab2">Download</a></li>
+          <li><a href="#Evaluation & Results" name="#tab3">Evaluation & Results</a></li>
+          <li><a href="#Citation" name="#tab4">Citation</a></li>
+          <li><a href="#Contact" name="#tab5">Contact</a></li>
+      </div>
+      <br>
+      <!--=================Teasers==========================-->
+      <div id="img_intro_examples" class="img_container">
+        <center><img src="./figs/samples.jpg" border="0" width="90%"></center>
+      </div>
+
+       <!--=================News==========================-->
+      <div class="section Highlights", id="Highlights">
+        <h2><font color="red">News</font></h2>
+        <ol>
+          <li>05/11/2025: The RGBDT500 dataset is released at <a href="https://drive.google.com/drive/folders/1UAe_maNR_ukYgtBrmeqiv87WhW28yK9r?usp=drive_link">Google drive</a></td>. </li>
+          <li>05/11/2025: A baseline method RDTTrack for tri-modal tracking is released at <a href="https://github.com/xuefeng-zhu5/RDTTrack">GitHub Page</a></td>. </li>
+          <li>07/29/2025: The Evaluation Toolkit and results of 17 trackers are released at <a href="https://github.com/xuefeng-zhu5/RGBDT500_Evaluation_Toolkit">GitHub Page</a></td>. </li>
+        </ol>
+      </div>
+
+      <!--=================Highlights==========================-->
+      <div class="section Highlights", id="Highlights">
+        <h2>Highlights</h2>
+        <ol>
+          <li><i><b><big>More modalities </big></b></i>: RGB, Depth, and Thermal Infrared </li>
+          <li><i><b><big>Large-scale dataset </big></b></i>: 500 tri-modal sequences, 203.7K RGB-D-T image triplets </li>
+          <li><i><b><big>Comprehensive evaluation</big></b></i>: Visual tracking, RGB-T tracking, RGB-D tracking, RGB-D-T tracking  </li>
+          <li><i><b><big>Generic scene and diverse object category</big></b></i>: >=66 object classes; >100 scenes </li>
+        </ol>
+      </div>
+
+       <!--================Obejct category==========================-->
+      <div id="object_category" class="img_container">
+        <center><img src="./figs/category.jpg" border="0" width="85%"></center>
+      </div>
+
+      <!--=================Abstract==========================-->
+      <div class="section abstract">
+        <h2>Abstract</h2>
+        <br>
+        <p style="text-align:justify">
+          Existing multi-modal object tracking approaches primarily focus on dual-modal paradigms, such as RGB-Depth or RGB-Thermal, yet remain challenged in complex scenarios due to limited input modalities.
+          To address this gap, this work introduces a novel multi-modal tracking task that leverages three complementary modalities, including visible RGB, Depth (D), and Thermal Infrared (TIR), aiming to enhance robustness in complex scenarios.
+          To support this task, we construct a new multi-modal tracking dataset, coined RGBDT500, which consists of 500 videos with synchronised frames across the three modalities.
+          Each frame provides spatially aligned RGB, depth, and thermal infrared images with precise object bounding box annotations.
+          Furthermore, we propose a novel multi-modal tracker, dubbed RDTTrack.
+          RDTTrack integrates tri-modal information for robust tracking by leveraging a pretrained RGB-only tracking model and prompt learning techniques.
+          In specific, RDTTrack fuses thermal infrared and depth modalities under a proposed orthogonal projection constraint, then integrates them with RGB signals as prompts for the pre-trained foundation tracking model, effectively harmonising tri-modal complementary cues.
+          The experimental results demonstrate the effectiveness and advantages of the proposed method, showing significant improvements over existing dual-modal approaches in terms of tracking accuracy and robustness in complex scenarios.
+        </p>
+      </div>
+
+      <!--=================Downloads==========================-->
+      <div class="section" , id="Download">
+        <h2>Download</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Type &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </th>
+                <th><font color="FireBrick">Baidu Disk &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></th>
+                <th><font color="FireBrick">Google Drive &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><font color="FireBrick">Full Dataset</td>
+                <td><a href="https://drive.google.com/drive/folders/1UAe_maNR_ukYgtBrmeqiv87WhW28yK9r?usp=drive_link">link</a></td>
+                <td><a href="https://drive.google.com/drive/folders/1UAe_maNR_ukYgtBrmeqiv87WhW28yK9r?usp=drive_link">link</a></td>
+              </tr>
+
+              <tr>
+                <td>Training Set</td>
+                <td><a href="https://drive.google.com/file/d/1z9E5W1PAFyfcgus7bN3732YMBZtvhPR4/view?usp=drive_link">link</a></td>
+                <td><a href="https://drive.google.com/file/d/1z9E5W1PAFyfcgus7bN3732YMBZtvhPR4/view?usp=drive_link">link</a></td>
+              </tr>
+              <tr>
+                <td>Test Set</td>
+                <td><a href="https://drive.google.com/drive/folders/1XcF07JxfK8LzS4BaIO-uYkuZhGGf4J33?usp=drive_link">link</a></td>
+                <td><a href="https://drive.google.com/drive/folders/1XcF07JxfK8LzS4BaIO-uYkuZhGGf4J33?usp=drive_link">link</a></td>
+              </tr>
+            </tbody>
+          </table>
+
+      </div>
+
+     <!--=================Experiments==========================-->
+      <div class="section Evaluation & Results" , id="Evaluation & Results">
+        <h2>Evaluation & Results</h2>
+        <p style="text-align:justify">
+        For evaluation, the Area Under Curve (AUC) and Distance Precision (DP) of precision and success plots are adopted.
+        The Evaluation Toolkit and results of 17 trackers are released at <a href="https://github.com/xuefeng-zhu5/RGBDT500_Evaluation_Toolkit">GitHub Page</a></td>.
+        </p>
+        <div id="img_intro_examples" class="img_container">
+          <center><img src="./figs/AUC_trackers.png" border="0" width="90%"></center>
+        </div>
+        <br />
+        <br />
+        <div id="img_intro_examples" class="img_container">
+          <center><img src="./figs/DP_trackers.png" border="0" width="90%"></center>
+        </div>
+     </div>
+
+      <!--=================Citation==========================-->
+      <div class="section Citation" , id="Citation">
+        <h2>Citation</h2>
+        <div class="section bibtex">
+          <pre>@InProceedings{Zhu_RGBDT500,
+  author = {Xue-Feng Zhu and Tianyang Xu and Yifan Pan and Jinjie Gu and Xi Li and Jiwen Lu and Xiao-Jun Wu and Josef Kittler},
+  title = {Collaborating Vision, Depth, and Thermal Signals for Multi-Modal Tracking: Dataset and Algorithm},
+  year = {2025}
+}
+          </pre>
+        </div>
+     </div>
+      <!--=================Contact==========================-->
+      <div class="section contact", id="Contact">
+        <h2 id="contact">Contact</h2>
+        <p style="text-align:justify">If you have any question, please contact Xue-Feng Zhu at
+          <strong>xuefeng_zhu95@163.com</strong>.</p>
+      </div>
+</body>
+
+</html>
