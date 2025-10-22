@@ -1,3 +1,121 @@
+<!-- ================= Click-through Acceptance Modal ================= -->
+<style>
+  /* 模态框基础样式 */
+  #licenseModal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+  }
+  #licenseModal .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px 30px;
+    border-radius: 12px;
+    width: 60%;
+    max-width: 600px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    font-family: Arial, sans-serif;
+  }
+  #licenseModal h3 {
+    color: #B22222;
+    margin-top: 0;
+  }
+  #licenseModal button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  #licenseModal .agree-btn {
+    background-color: #4CAF50;
+    color: white;
+    margin-right: 8px;
+  }
+  #licenseModal .cancel-btn {
+    background-color: #ccc;
+  }
+  #licenseModal .license-btn {
+    background-color: #f04c3e;
+    color: white;
+    margin: 10px 0;
+  }
+</style>
+
+<div id="licenseModal">
+  <div class="modal-content">
+    <h3>Agreement to Data Licenses</h3>
+    <p style="text-align:justify;">
+      By checking this box on behalf of the team, I confirm that I have read, understood, and agreed to the terms and conditions outlined in the data license/agreement documents that govern the access to and use of the dataset.
+      <br><br>
+      <strong>Note:</strong> Please make sure to read and agree to the terms and conditions in the Data Licenses here.
+    </p>
+
+    <button class="license-btn" id="viewLicenseBtn">
+      📄 View License PDF
+    </button>
+    <br>
+    <input type="checkbox" id="agreeCheckbox">
+    <label for="agreeCheckbox"> I have read and agree to the data license terms.</label>
+    <br><br>
+    <button class="agree-btn" id="acceptLicense">Accept & Download</button>
+    <button class="cancel-btn" id="cancelLicense">Cancel</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById("licenseModal");
+    const agreeCheckbox = document.getElementById("agreeCheckbox");
+    const acceptBtn = document.getElementById("acceptLicense");
+    const cancelBtn = document.getElementById("cancelLicense");
+    const viewLicenseBtn = document.getElementById("viewLicenseBtn");
+    let currentLink = null;
+
+    // 绑定所有下载链接
+    const downloadLinks = document.querySelectorAll("a[href*='drive.google.com'], a[href*='baidu.com']");
+
+    downloadLinks.forEach(link => {
+      link.addEventListener("click", function(e) {
+        e.preventDefault();
+        currentLink = this.href;
+        modal.style.display = "block";
+      });
+    });
+
+    // 处理按钮
+    cancelBtn.addEventListener("click", function() {
+      modal.style.display = "none";
+      agreeCheckbox.checked = false;
+    });
+
+    acceptBtn.addEventListener("click", function() {
+      if (agreeCheckbox.checked) {
+        modal.style.display = "none";
+        window.open(currentLink, "_blank");
+        agreeCheckbox.checked = false;
+      } else {
+        alert("Please check the box to confirm you have read and agreed to the license terms.");
+      }
+    });
+
+    viewLicenseBtn.addEventListener("click", function() {
+      window.open("https://drive.google.com/file/d/1qYfRekX5Am5hNXLxNX46OzlXMJqE0tq3/view", "_blank");
+    });
+
+    // 点击背景关闭
+    window.addEventListener("click", function(e) {
+      if (e.target == modal) {
+        modal.style.display = "none";
+        agreeCheckbox.checked = false;
+      }
+    });
+  });
+</script>
+
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -195,4 +313,5 @@
 </body>
 
 </html>
+
 
