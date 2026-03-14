@@ -25,7 +25,7 @@ The dataset can be downloaded through the Baidu Cloud [link](https://pan.baidu.c
 
 
 ## Evaluation toolkit 
-The Toolkit and Tutorial are accessible at [GitHub Page](https://github.com/xuefeng-zhu5/RGBDT500_Evaluation_Toolkit)
+The Toolkit and Tutorial are accessible at [GitHub Page](https://github.com/xuefeng-zhu5/RGBDT500_Evaluation_Toolkit) The annotations can be found in the toolkit.
 
 
 # Contact
