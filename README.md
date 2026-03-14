@@ -14,8 +14,9 @@
 * **_Comprehensive evaluation_**: Visual tracking, RGB-T tracking, RGB-D tracking, RGB-D-T tracking
 * **_Generic scene and diverse object category_**: >=66 object classes; >100 scenes
 
-## Download from Google Drive  
+## Download from Google Drive & Baidu Cloud
 The dataset can be downloaded through the Google Drive [link](https://drive.google.com/drive/folders/1UAe_maNR_ukYgtBrmeqiv87WhW28yK9r?usp=drive_link)
+The dataset can be downloaded through the Baidu Cloud [link](https://pan.baidu.com/s/1MvkZsQqxiwgH0jlem4uyYw?pwd=s3wz)
 
 ## Results for 17 Trackers
 <center><img width="75%" alt="" src="./figs/AUC_trackers.png"/></center>
